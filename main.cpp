@@ -1,9 +1,10 @@
 #include <iostream>
 //#include <tables.h>
-//#include <loader.h>
-//#include <scheduler.h>
-//#include <dispatcher.h>
-//#include <cpu.h>
+#include "modules/disk.h"
+#include "modules/loader.h"
+#include "modules/scheduler.h"
+#include "modules/dispatcher.h"
+#include "modules/cpu.h"
 
 using namespace std;
 
