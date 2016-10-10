@@ -24,22 +24,24 @@
     <ClCompile Include="modules\loader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="modules\Job.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="modules\cpu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="modules\disk.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="modules\dispatcher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="modules\loader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="modules\scheduler.h">
+    <ClInclude Include="modules\Job.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Instructions\Program-File.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

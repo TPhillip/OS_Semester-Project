@@ -2,9 +2,6 @@
 
 #include "modules/disk.h"
 #include "modules/loader.h"
-#include "modules/scheduler.h"
-#include "modules/dispatcher.h"
-#include "modules/cpu.h"
 
 using namespace std;
 
