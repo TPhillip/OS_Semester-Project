@@ -10,6 +10,7 @@ PCB_list::PCB_list()
 	count=0;
 	head = NULL;
 	tail = NULL;
+	current = NULL;
 }
 
 PCB_list::~PCB_list()
@@ -24,21 +25,22 @@ void PCB_list::addPCB(int jobID, int numJobs, int priority){
 		head = pcb;
 		tail = pcb;
 	}else{
-		PCB *temp;
-		if(tail->getNext() == NULL){
+		//PCB *temp;
+		//if(tail->getNext() == NULL){
 			tail->setNext(pcb);
-			temp = tail->getNext();
-			temp->setPrev(tail);
-			tail = temp;
-		}else{
-			while(tail->getNext() != NULL){
-				tail = tail->getNext();
-			}
-			tail->setNext(pcb);
-			temp = tail->getNext();
-			temp->setPrev(tail);
-			tail = temp;
-		}
+			//temp = tail->getNext();
+			pcb->setPrev(tail);
+			tail = pcb;
+		//}
+//		else{
+//			while(tail->getNext() != NULL){
+//				tail = tail->getNext();
+//			}
+//			tail->setNext(pcb);
+//			temp = tail->getNext();
+//			temp->setPrev(tail);
+//			tail = temp;
+//		}
 	}
 	current = head;
 }

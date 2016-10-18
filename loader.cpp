@@ -9,8 +9,8 @@
 using namespace std;
 
 Loader::Loader(){
-	PCBlist = new PCB_list();
-	disk = new Disk();
+	//PCBlist = new PCB_list();
+	//disk = new Disk();
 }
 
 void Loader::readFile(string fname){
@@ -67,7 +67,7 @@ void Loader::readFile(string fname){
 				}
 			}
 		}
-		PCBlist->printPCBInfo(disk);
+		//PCBlist->printPCBInfo(disk);
 	}else{
 		cout << "Program file did not open" << endl;
 	}

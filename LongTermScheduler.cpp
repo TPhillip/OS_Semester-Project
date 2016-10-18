@@ -1,41 +1,74 @@
 #include "LongTermScheduler.h"
 
-LongTermScheduler::LongTermScheduler()
+LongTermScheduler::LongTermScheduler(Ram* setRam, PCB_list* setPCBlist, Disk* setdisk)
 {
-	ram = new Ram();
+	//ram = new Ram();
+	ram = setRam;
 	queue =0;
-	queueCap = 1;
-	PCB *temp;
-	temp = new PCB[queueCap];
-	*readyQueue = temp;
+	PCBlist = setPCBlist;
+	disk = setdisk;
+	head = PCBlist->getHeadPtr();
 }
 
 LongTermScheduler::~LongTermScheduler()
 {
-	delete [] ram;
+	
 }
 
-void LongTermScheduler::loadProcesses(bool priority){
-	if(priority){
-		PCBlist->sortPriority();
-	}
-	PCB *head;
-	head = PCBlist->getCurrent();
-	int processRamSize, ramAvailable, ramLocation;
-	PCB::numGivenInfo progInstructions = head->getNumGivenInfo();
-	processRamSize = progInstructions.numRamData;
-	ramAvailable = ram->getAvailable();
-	if(ramAvailable > processRamSize && head != NULL){
-		if(queue < queueCap){ 
-			ramLocation = ram->getSize();
-			head->setProgramCounter(ramLocation);
-			readyQueue[queue]=head;
-			queue+=1;
-			head= head->getNext();
-			cout << "Job\t" << progInstructions.jobID << endl;
+void LongTermScheduler::loadProcesses(){
+	if(queue < queueCap){
+		int processRamSize, ramAvailable, ramLocation;
+		PCB::numGivenInfo progInstructions = head->getNumGivenInfo();
+		processRamSize = progInstructions.numRamData;
+		ramAvailable = ram->getAvailable();
+		if(ramAvailable > processRamSize){
+				ramLocation = ram->getSize();
+				head->setProgramCounter(ramLocation);
+				push();
+				queue+=1;
+				head= head->getNext();
+				PCBlist->setCurrent();
 		}
 	}
-	queue-=1;
+}
+void LongTermScheduler::pop(PCB* process){
+	int index;
+	if(queue>0){
+		for(index = 0; index < queue; index++){
+			if(process->getJobID() == readyQueue[index]->getJobID()){
+				if(index+1 < queue){
+					for(int i = index+1; i < queue; i++){
+						readyQueue[i-1] = readyQueue[i];
+					}
+					queue--;
+					readyQueue[queue] = NULL;
+					
+				}else{
+				
+				queue--;
+				readyQueue[queue] = NULL;
+				}
+			}
+		}
+	}
+}
+
+void LongTermScheduler::push(){
+	readyQueue[queue]=head;
+	PCB::arrays pcbArrays = head->getDiskUsage();
+	PCB::numGivenInfo progInstructs = head->getNumGivenInfo();
+	for(int i = 0; i < progInstructs.jobInstructs; i++){
+		int index = pcbArrays.jobInstructions[i];
+		ram->add(disk->get(index));
+	}
+}
+bool LongTermScheduler::done(){
+	if(head == NULL){
+		cout << "No More processes available for ReadyQueue" << endl;
+		return true;
+	}else{
+		return false;
+	}
 }
 
 
