@@ -7,9 +7,9 @@ class Loader{
 public:
 	Loader();
 	Disk* getDisk() {return disk;}
-	PCB_list* getPCB_list() { return PCBlist;}
-	void setDisk(Disk *setDisk) { disk = setDisk;}
-	void setPCBlist(PCB_list *setPCBlist) {	PCBlist = setPCBlist;}
+	PCB_list* setPCB_list() { return PCBlist;}
+	void setDisk(Disk* setDisk) { disk = setDisk;}
+	void setPCBlist(PCB_list* setPCBlist) {	PCBlist = setPCBlist;}
 	void readFile(string fname);
 	unsigned int hex2dec(string hex);
 
