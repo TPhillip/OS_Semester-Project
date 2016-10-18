@@ -8,9 +8,9 @@
 #include "PCB_list.h"
 using namespace std;
 
-Loader::Loader(){
-	PCBlist = new PCB_list();
-	disk = new Disk();
+Loader::Loader(PCB_list *setPCBlist, Disk *setDisk){
+	PCBlist = setPCBlist;
+	disk = setDisk;
 }
 
 void Loader::readFile(string fname){

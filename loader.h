@@ -5,11 +5,9 @@ using namespace std;
 
 class Loader{
 public:
-	Loader();
+	Loader(PCB_list *setPCBlist, Disk *setdisk);
 	Disk* getDisk() {return disk;}
-	PCB_list* getPCB_list() { return PCBlist;}
-	void setDisk(Disk *setDisk) { disk = setDisk;}
-	void setPCBlist(PCB_list *setPCBlist) {	PCBlist = setPCBlist;}
+	PCB_list* setPCB_list() { return PCBlist;}
 	void readFile(string fname);
 	unsigned int hex2dec(string hex);
 
