@@ -1,0 +1,1 @@
+./Debug/main.cpp.o ./Debug/Disk.cpp.o ./Debug/PCB.cpp.o ./Debug/Loader.cpp.o ./Debug/RAM.cpp.o ./Debug/Scheduler.cpp.o ./Debug/Dispatcher.cpp.o ./Debug/CPU.cpp.o   
